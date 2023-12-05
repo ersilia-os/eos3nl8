@@ -1,9 +1,9 @@
 {
-    "Identifier": "",
-    "Slug": "",
-    "Status": "",
-    "Title": "",
-    "Description": "",
+    "Identifier": "eos3nl8",
+    "Slug": "COVID-19-Drug-Repurposing",
+    "Status": "In progress",
+    "Title": "DRKG_COVID19",
+    "Description": "Drug-Repurposing for COVID-19",
     "Mode": "",
     "Task": [],
     "Input": [],
@@ -12,8 +12,11 @@
     "Output Type": [],
     "Output Shape": "",
     "Interpretation": "",
-    "Tag": [],
-    "Publication": "",
-    "Source Code": "",
-    "License": ""
+    "Tag": [
+        "COVID-19",
+        "Drug Repurposing Knowledge Graph"
+    ],
+    "Publication": "https://arxiv.org/abs/2007.10261v1",
+    "Source Code": "https://github.com/gnn4dr/DRKG",
+    "License": "Apache"
 }
