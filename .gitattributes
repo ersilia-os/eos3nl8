@@ -1,2 +1,5 @@
 mock.txt filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
 *.txt filter=lfs diff=lfs merge=lfs -text
+=======
+>>>>>>> bcbc055553a79f807c8c669f268a5297c4079a2e
