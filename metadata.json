@@ -1,0 +1,22 @@
+{
+    "Identifier": "eos3nl8",
+    "Slug": "COVID-19-Drug-Repurposing",
+    "Status": "In progress",
+    "Title": "DRKG_COVID19",
+    "Description": "This paper proposes an inductive RGCN for learning informative relation embeddings even in the few-shot learning regime and applies the method on the drug-repurposing knowledge graph (DRKG) for discovering drugs for Covid-19",
+    "Mode": "Pretrained",
+    "Task": ["Representation"],
+    "Input": ["Compound"],
+    "Input Shape": "Single",
+    "Output": ["Score"],
+    "Output Type": ["Float"],
+    "Output Shape": "List",
+    "Interpretation": "",
+    "Tag": [
+        "COVID-19",
+        "Drug Repurposing Knowledge Graph"
+    ],
+    "Publication": "https://arxiv.org/abs/2007.10261v1",
+    "Source Code": "https://github.com/gnn4dr/DRKG",
+    "License": "Apache"
+}
