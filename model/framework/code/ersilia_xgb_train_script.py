@@ -12,13 +12,10 @@ from sklearn.multioutput import MultiOutputRegressor
 import joblib
 import optuna
 
-
 # # Specify the directory
 directory = 'data/ersilia_embeddings/'
 # Create the directory if it doesn't exist
 os.makedirs(directory, exist_ok=True)
-
-
 
 # Load the variables as NumPy arrays
 print("Loading training and test data...")
@@ -26,7 +23,6 @@ X_train = np.loadtxt(os.path.join(directory, 'X_train_ersilia.txt'))
 y_train = np.loadtxt(os.path.join(directory, 'y_train_ersilia.txt'))
 X_test = np.loadtxt(os.path.join(directory, 'X_test_ersilia.txt'))
 y_test = np.loadtxt(os.path.join(directory, 'y_test_ersilia.txt'))
-
 
 def objective(trial):
     '''Function to fine-tune XGBoost model with Optuna'''
@@ -58,7 +54,6 @@ def objective(trial):
     mse = np.mean(mse_per_target)
     return mse
 
-
 # Create an Optuna study and optimize the objective function
 print("Fine-tuning XGBoost model...")
 study = optuna.create_study(direction='minimize')
@@ -68,7 +63,6 @@ print('Best trial:')
 trial = study.best_trial
 print(f'Params: {trial.params}')
 print(f'Mean Squared Error: {trial.value}')
-
 
 # Extract the best hyperparameters
 print("Training model with the best hyperparameters...")
