@@ -21,7 +21,6 @@ y_train = np.loadtxt(os.path.join(directory, 'y_train_ersilia.txt'))
 X_test = np.loadtxt(os.path.join(directory, 'X_test_ersilia.txt'))
 y_test = np.loadtxt(os.path.join(directory, 'y_test_ersilia.txt'))
 
-
 def objective(trial):
     '''Function to fine-tune XGBoost model with Optuna'''
     params = {
@@ -50,7 +49,6 @@ def objective(trial):
     mse = np.mean(mse_per_target)
     return mse
 
-
 # Create an Optuna study and optimize the objective function
 print("Fine-tuning XGBoost model...")
 study = optuna.create_study(direction='minimize')
@@ -60,7 +58,6 @@ print('Best trial:')
 trial = study.best_trial
 print(f'Params: {trial.params}')
 print(f'Mean Squared Error: {trial.value}')
-
 
 # Extract the best hyperparameters
 print("Training model with the best hyperparameters...")

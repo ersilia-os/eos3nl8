@@ -10,12 +10,10 @@ import optuna
 from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors as rd
 
-
 # Loading training and test data
 print("Loading training and test data...")
 train_df = pd.read_csv('data/train.csv')
 test_df = pd.read_csv('data/test.csv')
-
 
 RADIUS = 2
 N_BITS = 2048
@@ -42,7 +40,6 @@ def preprocess_data(df):
     # Extract the fingerprints as a NumPy array
     morgan_fingerprints = np.array(df['morgan_fingerprint_count'].tolist())
     return morgan_fingerprints, embeddings
-
 
 # Pre-process the data
 print("Pre-processing the training and testing data...")
@@ -79,7 +76,6 @@ def objective(trial):
     # Average the mean squared errors across all target variables
     mse = np.mean(mse_per_target)
     return mse
-
 
 # Create an Optuna study and optimize the objective function
 print("Fine-tuning XGBoost model...")
