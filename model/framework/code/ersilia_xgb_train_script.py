@@ -5,10 +5,7 @@ using the ersilia descriptor as input.'''
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import xgboost as xgb
-from sklearn.multioutput import MultiOutputRegressor
 import joblib
 import optuna
 
@@ -42,11 +39,9 @@ def objective(trial):
 
     # Create an XGBoost regressor with the suggested hyperparameters
     xgb_regressor = xgb.XGBRegressor(**params)
-    # Create a MultiOutputRegressor with XGBoost
-    multioutput_regressor = MultiOutputRegressor(xgb_regressor)
-    multioutput_regressor.fit(X_train, y_train, verbose=True)
+    xgb_regressor.fit(X_train, y_train)
     # Make predictions on the validation set
-    y_pred = multioutput_regressor.predict(X_test)
+    y_pred = xgb_regressor.predict(X_test)
     # Calculate mean squared error for each target variable
     mse_per_target = np.mean((y_test - y_pred)**2, axis=0)
     # print("mse per target", mse_per_target)
@@ -69,16 +64,14 @@ print("Training model with the best hyperparameters...")
 best_params = study.best_trial.params
 # Create an XGBoost regressor with the best hyperparameters
 best_xgb_regressor = xgb.XGBRegressor(objective='reg:squarederror', **best_params)
-# Create a MultiOutputRegressor with XGBoost
-best_multioutput_regressor = MultiOutputRegressor(best_xgb_regressor)
 # Train the final model using the full training set
-best_multioutput_regressor.fit(X_train, y_train)
+best_xgb_regressor.fit(X_train, y_train)
 # Make predictions on your test set or perform any further evaluation
-y_test_pred = best_multioutput_regressor.predict(X_test)
+y_test_pred = best_xgb_regressor.predict(X_test)
 
 # Save the trained model to a file
 print("Saving the model to a file...")
 model_filename = 'xgboost_ersilia_model.bin'
-joblib.dump(best_multioutput_regressor, model_filename)
+joblib.dump(best_xgb_regressor, model_filename)
 print(f"File saved as {model_filename}")
 print("Task completed.")
