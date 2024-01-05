@@ -52,7 +52,9 @@ def preprocess_data(df):
     embeddings = df.iloc[:, 2:].values
     # create fingerprint column
     df['morgan_fingerprint'] = df['SMILES'].apply(calculate_morgan_fingerprint)
+    all = len(df)
     df = df.dropna()
+    print("Molecules eliminated", all-len(df))
     # Extract the fingerprints as a NumPy array
     morgan_fingerprints = np.array(df['morgan_fingerprint'].tolist())
     return morgan_fingerprints, embeddings
@@ -61,8 +63,8 @@ def preprocess_data(df):
 # Pre-process the data
 print("Pre-processing the training and testing data...")
 X_train, y_train = preprocess_data(train_df)
-X_test, y_test = preprocess_data(test_df)
 print("The length of X_train is:", len(X_train))
+X_test, y_test = preprocess_data(test_df)
 print("The length of X_test is:", len(X_test))
 
 
