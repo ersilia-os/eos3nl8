@@ -40,7 +40,7 @@ class XGBRegressor():
     def _optimize_hyperpar(self):
         # Create an Optuna study and optimize the objective function
         study = optuna.create_study(direction='minimize')
-        study.optimize(self._objective, n_trials=30)
+        study.optimize(self._objective, n_trials=100)
         # Print the best hyperparameters
         print('Best trial:')
         trial = study.best_trial
